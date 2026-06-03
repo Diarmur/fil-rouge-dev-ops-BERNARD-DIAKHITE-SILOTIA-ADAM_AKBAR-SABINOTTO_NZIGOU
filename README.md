@@ -5,7 +5,7 @@
 
 ---
 
-# [Nom du projet]
+# Projet fil rouge DevOps (Mini-Blog)
 
 **Équipe :** Najm Adam AKBAR, Mathis NZIGOU, Claude SABINOTO, Mariama DIAKHITE, Ugo BERNARD
 
