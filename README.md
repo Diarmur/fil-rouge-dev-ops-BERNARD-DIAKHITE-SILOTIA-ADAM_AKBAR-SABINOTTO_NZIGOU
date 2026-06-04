@@ -37,8 +37,8 @@ Cette application permet aux utilisateurs de publier, consulter, modifier et sup
 | Membre | Rôle | Responsabilité principale |
 | ------ | ---- | ------------------------- |
 | Mathis | Lead Dev | Développement de l'application |
-| Claude | Lead Ops | Déploiement, Docker et supervision |
-| Najm & Ugo | Lead Qualité / CI | Tests automatisés et pipeline CI/CD |
+| Najm & Ugo | Lead Ops | Déploiement, Docker et supervision |
+| Claude | Lead Qualité / CI | Tests automatisés et pipeline CI/CD |
 | Mariama  | Lead Doc / Produit | Documentation et suivi du projet |
 
 ---
