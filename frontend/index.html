@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniBlog - Partagez vos idées</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 40px; }
+        .header h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        .form-card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input, textarea { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; font-family: inherit; }
+        input:focus, textarea:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+        textarea { resize: vertical; min-height: 120px; }
+        .btn { padding: 12px 24px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
+        .search-bar { background: white; border-radius: 50px; padding: 5px 20px; margin-bottom: 30px; display: flex; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .search-bar input { flex: 1; border: none; padding: 15px; font-size: 16px; }
+        .search-bar input:focus { box-shadow: none; }
+        .search-bar button { background: none; border: none; font-size: 24px; cursor: pointer; padding: 10px; }
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+        .article-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: all 0.3s; animation: fadeIn 0.5s ease; }
+        .article-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .article-content { padding: 20px; }
+        .article-title { font-size: 1.4rem; color: #333; margin-bottom: 10px; word-break: break-word; }
+        .article-text { color: #666; line-height: 1.6; margin-bottom: 15px; word-break: break-word; }
+        .article-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .article-date { color: #999; font-size: 0.85rem; }
+        .btn-edit, .btn-delete { padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; }
+        .btn-edit { background: #ffc107; color: #333; margin-right: 8px; }
+        .btn-edit:hover { background: #ffb300; transform: scale(1.05); }
+        .btn-delete { background: #dc3545; color: white; }
+        .btn-delete:hover { background: #c82333; transform: scale(1.05); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h2 { color: #333; }
+        .close-modal { font-size: 28px; cursor: pointer; color: #999; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 12px 24px; border-radius: 10px; z-index: 1100; animation: slideIn 0.3s ease; }
+        .toast.success { background: #28a745; }
+        .toast.error { background: #dc3545; }
+        .empty-state { text-align: center; padding: 60px 20px; background: white; border-radius: 20px; color: #999; }
+        .empty-state h3 { margin-bottom: 10px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @media (max-width: 768px) { .header h1 { font-size: 2rem; } .articles-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 MiniBlog</h1>
+            <p>Partagez vos idées avec le monde</p>
+        </div>
+        <div class="form-card">
+            <form id="articleForm">
+                <div class="form-group">
+                    <label>Titre ✨</label>
+                    <input type="text" id="title" placeholder="Un titre accrocheur..." required>
+                </div>
+                <div class="form-group">
+                    <label>Contenu 📄</label>
+                    <textarea id="content" placeholder="Racontez votre histoire..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">✨ Publier l'article</button>
+            </form>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher un article...">
+            <button id="clearSearch">✖️</button>
+        </div>
+        <div id="articlesContainer" class="articles-grid"></div>
+    </div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Modifier l'article</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label>Titre</label>
+                    <input type="text" id="editTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Contenu</label>
+                    <textarea id="editContent" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        let currentEditId = null;
+        function showToast(message, type) { const toast = document.createElement('div'); toast.className = `toast ${type || 'success'}`; toast.textContent = message; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
+        async function loadArticles(searchTerm = '') { try { const res = await fetch(`${API_URL}/articles`); let articles = await res.json(); if (searchTerm) { articles = articles.filter(a => a.title.toLowerCase().includes(searchTerm.toLowerCase()) || a.content.toLowerCase().includes(searchTerm.toLowerCase())); } displayArticles(articles); } catch(err) { showToast('Erreur chargement', 'error'); } }
+        function formatDate(dateString) { const date = new Date(dateString); return date.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }); }
+        function displayArticles(articles) { const container = document.getElementById('articlesContainer'); if (articles.length === 0) { container.innerHTML = '<div class="empty-state"><h3>📭 Aucun article</h3><p>Soyez le premier à partager quelque chose !</p></div>'; return; } container.innerHTML = articles.map(article => `<div class="article-card"><div class="article-content"><h2 class="article-title">${escapeHtml(article.title)}</h2><p class="article-text">${escapeHtml(article.content)}</p><div class="article-meta"><span class="article-date">📅 ${formatDate(article.created_at)}</span><div><button class="btn-edit" onclick="editArticle(${article.id})">✏️ Modifier</button><button class="btn-delete" onclick="deleteArticle(${article.id})">🗑️ Supprimer</button></div></div></div></div>`).join(''); }
+        function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
+        async function createArticle(title, content) { try { const res = await fetch(`${API_URL}/articles`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({title,content}) }); if(res.ok) { showToast('✅ Article publié !'); loadArticles(document.getElementById('searchInput').value); return true; } } catch(err) { showToast('❌ Erreur publication', 'error'); } return false; }
+        async function deleteArticle(id) { if(!confirm('Supprimer ?')) return; try { await fetch(`${API_URL}/articles/${id}`, { method:'DELETE' }); showToast('🗑️ Article supprimé'); loadArticles(document.getElementById('searchInput').value); } catch(err) { showToast('❌ Erreur suppression', 'error'); } }
+        async function editArticle(id) { try { const res = await fetch(`${API_URL}/articles`); const articles = await res.json(); const article = articles.find(a => a.id === id); if(article) { currentEditId = id; document.getElementById('editTitle').value = article.title; document.getElementById('editContent').value = article.content; document.getElementById('editModal').classList.add('active'); } } catch(err) { showToast('Erreur', 'error'); } }
+        async function updateArticle(id, title, content) { try { await fetch(`${API_URL}/articles/${id}`, { method:'DELETE' }); const createRes = await fetch(`${API_URL}/articles`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({title,content}) }); if(createRes.ok) { showToast('✏️ Article modifié !'); loadArticles(document.getElementById('searchInput').value); return true; } } catch(err) { showToast('❌ Erreur modification', 'error'); } return false; }
+        document.getElementById('articleForm').onsubmit = async (e) => { e.preventDefault(); const title = document.getElementById('title').value; const content = document.getElementById('content').value; if(await createArticle(title, content)) { document.getElementById('title').value = ''; document.getElementById('content').value = ''; } };
+        document.getElementById('editForm').onsubmit = async (e) => { e.preventDefault(); const title = document.getElementById('editTitle').value; const content = document.getElementById('editContent').value; if(await updateArticle(currentEditId, title, content)) { document.getElementById('editModal').classList.remove('active'); } };
+        document.getElementById('searchInput').oninput = (e) => loadArticles(e.target.value);
+        document.getElementById('clearSearch').onclick = () => { document.getElementById('searchInput').value = ''; loadArticles(''); };
+        document.querySelector('.close-modal').onclick = () => document.getElementById('editModal').classList.remove('active');
+        window.onclick = (event) => { const modal = document.getElementById('editModal'); if(event.target === modal) modal.classList.remove('active'); };
+        loadArticles();
+    </script>
+</body>
+</html>
