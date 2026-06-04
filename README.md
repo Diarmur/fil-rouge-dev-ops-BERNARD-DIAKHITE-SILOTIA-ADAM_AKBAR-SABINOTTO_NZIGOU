@@ -5,30 +5,30 @@
 
 ---
 
-# [Nom du projet]
+# Projet fil rouge DevOps (Mini-Blog)
 
-**Équipe :** Prénom Nom, Prénom Nom, …  
-**Groupe / promo :** …  
-**Dépôt :** https://github.com/... ou GitLab
+**Équipe :** Najm Adam AKBAR, Mathis NZIGOU, Claude SABINOTO, Mariama DIAKHITE, Ugo BERNARD
+
+Groupe : 3 
+
+**Dépôt :** https://github.com/
 
 ---
 
 ## Description du sujet
 
-En 3–5 phrases : que fait l'application ? Qui est l'utilisateur cible ?
 
-<!-- Zone d'effort : ne pas copier un exemple fourni par l'intervenant -->
-
+Cette application permet aux utilisateurs de publier, consulter, modifier et supprimer des articles de blog. Les données sont enregistrées dans une base de données afin de conserver les publications. L'objectif du projet est de mettre en pratique les concepts DevOps tels que la conteneurisation, l'intégration continue et le déploiement. L'utilisateur cible est toute personne souhaitant partager et gérer du contenu de manière simple.
 ---
 
 ## Stack technique prévu
 
 | Composant | Choix | Justification (1 phrase) |
 | --------- | ----- | -------------------------- |
-| Backend / API | ex. Node, Python, Go | |
-| Base de données | ex. PostgreSQL, MongoDB | |
-| Front (optionnel) | ex. React, aucun | |
-| Orchestration cible | Compose puis K8s | |
+| Backend / API | JavaScript Express | Framework léger et populaire permettant de développer rapidement une API web. |
+| Base de données | PostgreSQL | Base de données relationnelle robuste, fiable et largement utilisée dans les environnements professionnels. |
+| Front | Vue | Framework moderne permettant de développer une interface utilisateur dynamique et facile à maintenir. |
+| Orchestration cible | Compose puis K8s | Correspond aux technologies étudiées dans le module et aux livrables attendus. |
 
 ---
 
@@ -36,18 +36,18 @@ En 3–5 phrases : que fait l'application ? Qui est l'utilisateur cible ?
 
 | Membre | Rôle | Responsabilité principale |
 | ------ | ---- | ------------------------- |
-| | Lead Dev | |
-| | Lead Ops | |
-| | Lead Qualité / CI | |
-| | Lead Doc / Produit | |
+| Mathis | Lead Dev | Développement de l'application |
+| Claude | Lead Ops | Déploiement, Docker et supervision |
+| Najm & Ugo | Lead Qualité / CI | Tests automatisés et pipeline CI/CD |
+| Mariama  | Lead Doc / Produit | Documentation et suivi du projet |
 
 ---
 
 ## Objectifs du fil rouge (3 minimum)
 
-1. Ex. : Avoir une API conteneurisée avec healthcheck d'ici S3.
-2. Ex. : Pipeline CI qui build et push l'image sur chaque merge `main`.
-3. Ex. : Déployer sur cluster kind avec 2 replicas d'ici S4.
+1. Conteneuriser l'application et la base de données avec Docker.
+2. Mettre en place un pipeline CI pour automatiser les tests et les vérifications du projet.
+3. Déployer l'application sur Kubernetes et assurer son bon fonctionnement à l'aide d'outils de supervision
 
 ---
 
@@ -55,7 +55,7 @@ En 3–5 phrases : que fait l'application ? Qui est l'utilisateur cible ?
 
 | Séance | Livrable | Statut (à cocher) |
 | ------ | -------- | ----------------- |
-| S1 | README cadrage | ☐ |
+| S1 | README cadrage | ☑  |
 | S2 | Dockerfile(s) + DB en container | ☐ |
 | S3 | docker-compose + CI vert | ☐ |
 | S4 | Manifests K8s appliqués | ☐ |
@@ -75,10 +75,6 @@ git clone ...
 
 ## Communication d'équipe
 
-Canal utilisé (Teams, Discord, …) :
+Canal utilisé: Teams ou Discord
 
 ---
-
-## Participation S1 (optionnel, 2 lignes)
-
-Retour sur le jeu de rôle ou le cas déploiement : une leçon retenue pour le projet.
