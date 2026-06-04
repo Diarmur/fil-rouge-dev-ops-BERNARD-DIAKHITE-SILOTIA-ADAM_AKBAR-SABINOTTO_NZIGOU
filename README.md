@@ -67,14 +67,26 @@ Cette application permet aux utilisateurs de publier, consulter, modifier et sup
 ## Démarrage local (à compléter au fil des séances)
 
 ```bash
-# À documenter progressivement — pas besoin de tout remplir en S1
-git clone ...
+git clone https://github.com/Diarmur/fil-rouge-dev-ops-BERNARD-DIAKHITE-SILOTIA-ADAM_AKBAR-SABINOTTO_NZIGOU.git
+cd fil-rouge-dev-ops-BERNARD-DIAKHITE-SILOTIA-ADAM_AKBAR-SABINOTTO_NZIGOU/client
+
+npm install
+npm run dev
 ```
 
----
+L'application sera accessible sur :
+
+http://localhost:5173
+
+Pour plus de détails :
+
+- [README Client](./client/README.md)
+
 
 ## Communication d'équipe
 
+```
+
 Canal utilisé: Teams ou Discord
 
----
+```
