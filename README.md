@@ -46,3 +46,8 @@ docker compose up -d
 
 ## Communication
 Canal : Discord / Teams
+
+# Ouvre README.md dans VSCode et change la ligne :
+# **Dépôt :** https://github.com/najma-xxx/...
+# par :
+# **Dépôt :** https://github.com/Diarmur/fil-rouge-dev-ops-BERNARD-DIAKHITE-SILOTIA-ADAM_AKBAR-SABINOTTO_NZIGOU
