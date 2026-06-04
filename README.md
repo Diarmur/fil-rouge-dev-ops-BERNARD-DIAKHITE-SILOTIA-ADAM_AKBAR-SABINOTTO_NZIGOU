@@ -1,13 +1,11 @@
-# Gabarit README — Projet fil rouge DevOps
+# README — Projet fil rouge DevOps
 
-> Copiez ce contenu dans le `README.md` à la racine du **dépôt Git de votre groupe**.  
-> Complétez chaque section — champs vides = Note 3 incomplète.
 
 ---
 
 # Projet fil rouge DevOps (Mini-Blog)
 
-**Équipe :** Najm Adam AKBAR, Mathis NZIGOU, Claude SABINOTO, Mariama DIAKHITE, Ugo BERNARD
+**Équipe :** Najm Adam AKBAR, Mathis SILOTIA, Claude SABINOTO, Mariama DIAKHITE, Ugo BERNARD
 
 Groupe : 3 
 
