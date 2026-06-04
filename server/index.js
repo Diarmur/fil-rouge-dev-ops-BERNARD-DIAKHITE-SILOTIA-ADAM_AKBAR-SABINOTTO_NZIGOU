@@ -2,12 +2,20 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const itemsRouter = require('./routes/items');
+const postsRouter = require('./routes/posts');
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
 app.use(express.json());
 
-app.use('/api/items', itemsRouter);
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'mini-blog-api' });
+});
 
-app.listen(3000, () => console.log('Server on :3000'));
+app.use('/api/posts', postsRouter);
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Mini-blog API running on port ${PORT}`);
+});
