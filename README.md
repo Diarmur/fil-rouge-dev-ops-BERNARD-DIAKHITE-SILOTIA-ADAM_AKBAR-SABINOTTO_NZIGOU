@@ -83,7 +83,7 @@ http://localhost:5173
 
 Pour plus de détails :
 
-- [README Client](./client/README.md)
+- [README Client](./client/readme.md)
 - [README Server](./server/readme.md)
 
 ## Communication d'équipe
