@@ -943,7 +943,6 @@ Utiliser un fichier `.env` non versionné ou des secrets Docker/Kubernetes.
 4. Le frontend recharge la liste des articles.
 
 ---
----
 
 ## 23. Dépannage
 
@@ -1032,7 +1031,6 @@ docker compose up -d
 | Proxy Nginx | `curl http://localhost:8080/api/posts` | Retour JSON via Nginx |
 | Navigateur | `http://IP_DE_LA_VM:8080` | Page mini-blog affichée |
 
----
 ---
 
 ## 26. Jalons du projet
