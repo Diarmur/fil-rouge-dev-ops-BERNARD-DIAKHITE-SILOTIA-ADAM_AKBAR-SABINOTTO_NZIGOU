@@ -54,15 +54,15 @@ Cette application permet aux utilisateurs de publier, consulter, modifier et sup
 | Séance | Livrable | Statut (à cocher) |
 | ------ | -------- | ----------------- |
 | S1 | README cadrage | ☑  |
-| S2 | Dockerfile(s) + DB en container | ☐ |
-| S3 | docker-compose + CI vert | ☐ |
+| S2 | Dockerfile(s) + DB en container | ☑ |
+| S3 | docker-compose + CI vert | ☑ |
 | S4 | Manifests K8s appliqués | ☐ |
 | S5 | Monitoring + post-mortem | ☐ |
-| S6 | Soutenance prête | ☐ |
+| S6 | Soutenance prête | ☑ |
 
 ---
 
-## Démarrage local (à compléter au fil des séances)
+## Démarrage local 
 
 ```bash
 git clone https://github.com/Diarmur/fil-rouge-dev-ops-BERNARD-DIAKHITE-SILOTIA-ADAM_AKBAR-SABINOTTO_NZIGOU.git
@@ -70,6 +70,11 @@ cd fil-rouge-dev-ops-BERNARD-DIAKHITE-SILOTIA-ADAM_AKBAR-SABINOTTO_NZIGOU/client
 
 npm install
 npm run dev
+
+Démarrage Docker
+
+docker compose up --build
+
 ```
 
 L'application sera accessible sur :
@@ -79,12 +84,12 @@ http://localhost:5173
 Pour plus de détails :
 
 - [README Client](./client/README.md)
-
+- [README Server](./server/readme.md)
 
 ## Communication d'équipe
 
 ```
 
-Canal utilisé: Teams ou Discord
+Canal utilisé: teams
 
 ```
