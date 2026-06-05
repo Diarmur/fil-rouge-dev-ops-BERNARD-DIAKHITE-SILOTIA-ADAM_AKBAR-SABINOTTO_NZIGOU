@@ -1083,7 +1083,7 @@ Améliorations possibles :
 
 ---
 
-## 39. Conclusion
+## 29. Conclusion
 
 Cette première version du projet met en place un mini-blog fonctionnel et conteneurisé.
 
