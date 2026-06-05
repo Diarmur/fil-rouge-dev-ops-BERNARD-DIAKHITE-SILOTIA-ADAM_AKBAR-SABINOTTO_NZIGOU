@@ -944,47 +944,7 @@ Utiliser un fichier `.env` non versionné ou des secrets Docker/Kubernetes.
 
 ---
 
-## 23. Questions possibles en soutenance
-
-### Pourquoi avoir choisi un mini-blog ?
-
-Nous avons choisi un mini-blog car c'est une application simple mais complète. Elle contient un frontend, une API et une base de données, ce qui permet de travailler les notions DevOps sans complexifier inutilement le développement applicatif.
-
-### Pourquoi Docker ?
-
-Docker permet de rendre l'application reproductible. Chaque service est isolé dans un conteneur avec ses dépendances.
-
-### Pourquoi Docker Compose ?
-
-Docker Compose permet de lancer plusieurs services ensemble avec une seule commande. Il simplifie la gestion du frontend, du backend et de la base de données.
-
-### Pourquoi PostgreSQL ?
-
-PostgreSQL permet d'avoir une vraie base de données persistante. Les articles ne sont pas stockés en mémoire.
-
-### Pourquoi Nginx ?
-
-Nginx sert le frontend compilé et redirige les requêtes `/api` vers le backend.
-
-### Pourquoi le backend utilise `db` au lieu de `localhost` ?
-
-Dans Docker, `localhost` désigne le conteneur lui-même. Le backend doit donc utiliser le nom du service Docker Compose, ici `db`, pour joindre PostgreSQL.
-
-### Que fait le volume Docker ?
-
-Le volume conserve les données PostgreSQL même si le conteneur est supprimé ou redémarré.
-
-### Que fait `docker compose down -v` ?
-
-Cette commande arrête les conteneurs et supprime les volumes. Les données PostgreSQL sont donc perdues.
-
-### Pourquoi la base de données n'est pas exposée sur un port public ?
-
-Seul le backend a besoin d'accéder à PostgreSQL. La base reste donc accessible uniquement sur le réseau Docker interne, ce qui est plus propre et plus sécurisé.
-
----
-
-## 24. Dépannage
+## 23. Dépannage
 
 ### Erreur Docker permission denied
 
@@ -1060,7 +1020,7 @@ docker compose up -d
 
 ---
 
-## 25. Tests réalisés
+## 24. Tests réalisés
 
 | Test | Commande | Résultat attendu |
 |---|---|---|
@@ -1073,24 +1033,7 @@ docker compose up -d
 
 ---
 
-## 26. Captures d'écran à fournir
-
-Pour le rendu, les captures utiles sont :
-
-1. dépôt GitHub avec les fichiers du projet ;
-2. contenu du `docker-compose.yml` ;
-3. sortie de `docker compose ps` ;
-4. test `curl http://localhost:3000/health` ;
-5. test `curl http://localhost:3000/api/posts` ;
-6. test `curl http://localhost:8080/api/posts` ;
-7. affichage du mini-blog dans le navigateur ;
-8. création d'un article ;
-9. suppression d'un article ;
-10. logs du backend.
-
----
-
-## 27. Jalons du projet
+## 26. Jalons du projet
 
 | Séance | Livrable | Statut |
 |---|---|---|
@@ -1103,7 +1046,7 @@ Pour le rendu, les captures utiles sont :
 
 ---
 
-## 28. Limites actuelles
+## 27. Limites actuelles
 
 L'application est volontairement simple.
 
@@ -1122,7 +1065,7 @@ Ces limites sont cohérentes avec l'objectif du fil rouge : construire progressi
 
 ---
 
-## 29. Améliorations prévues
+## 28. Améliorations prévues
 
 Améliorations possibles :
 
@@ -1140,7 +1083,7 @@ Améliorations possibles :
 
 ---
 
-## 30. Conclusion
+## 29. Conclusion
 
 Cette première version du projet met en place un mini-blog fonctionnel et conteneurisé.
 
